@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICS Bicutan Academic Resources - AI Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        #chatbox {
+            display: none; /* Hidden by default */
+            position: fixed;
+            bottom: 60px; /* Space above the icon */
+            right: 20px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000; /* Ensure it appears above other elements */
+        }
+        #chatheader {
+            background: #4CAF50; /* Match your website's header color */
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        #chatcontent {
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            font-size: 14px; /* Adjust font size for better readability */
+        }
+        #userInput {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-top: 1px solid #ccc;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+        #chatButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4CAF50; /* Match your website's button color */
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 50%; /* Circular button */
+            cursor: pointer;
+            width: 50px; /* Width of the button */
+            height: 50px; /* Height of the button */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        #chatButton img {
+            width: 30px; /* Icon size */
+            height: 30px; /* Icon size */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Chatbox -->
+<div id="chatbox">
+    <div id="chatheader">
+        AICS Chatbot
+        <span id="close" style="cursor:pointer; float:right;">&times;</span>
+    </div>
+    <div id="chatcontent">
+        <div id="messages"></div>
+    </div>
+    <input type="text" id="userInput" placeholder="Type a message...">
+</div>
+
+<!-- Chat Icon Button -->
+<button id="chatButton">
+    <img src="chat-icon.png" alt="Chat Icon"> <!-- Replace with your chat icon path -->
+</button>
+
+<script>
+    document.getElementById('chatButton').onclick = function() {
+        const chatbox = document.getElementById('chatbox');
+        chatbox.style.display = chatbox.style.display === 'block' ? 'none' : 'block';
+    };
+
+    document.getElementById('close').onclick = function() {
+        document.getElementById('chatbox').style.display = 'none';
+    };
+
+    document.getElementById('userInput').addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            var userText = this.value;
+            this.value = '';
+            addMessage('You: ' + userText);
+            generateResponse(userText);
+        }
+    });
+
+    function addMessage(message) {
+        var messagesDiv = document.getElementById('messages');
+        messagesDiv.innerHTML += '<div>' + message + '</div>';
+        messagesDiv.scrollTop = messagesDiv.scrollHeight; // Scroll to the bottom
+    }
+
+    function generateResponse(userText) {
+        userText = userText.toLowerCase();
+        let response = "I'm sorry, I don't understand that.";
+        
+        // Enhanced AI-like responses based on academic context
+        if (userText.includes("hello") || userText.includes("hi")) {
+            response = "Hello! Welcome to AICS Bicutan Academic Resources. How can I assist you today?";
+        } else if (userText.includes("help")) {
+            response = "Sure! You can ask me about our modules, subjects, or how to contact us.";
+        } else if (userText.includes("modules")) {
+            response = "We offer modules in Math, Science, and English. Would you like to know more about a specific module?";
+        } else if (userText.includes("math")) {
+            response = "The Math module covers algebra, geometry, and calculus. Would you like to download it?";
+        } else if (userText.includes("science")) {
+            response = "The Science module explores physics, chemistry, and biology. Would you like to download it?";
+        } else if (userText.includes("english")) {
+            response = "The English module focuses on reading comprehension, writing, and grammar. Would you like to download it?";
+        } else if (userText.includes("contact")) {
+            response = "You can contact us at info@aicsbicutan.edu.ph or call us at (02) 123-4567.";
+        } else if (userText.includes("bye")) {
+            response = "Goodbye! Have a great day!";
+        }else if (userText.includes(Math)
+
+        
+        addMessage('Bot: ' + response);
+    }
+</script>
+
+</body>
+</html>
